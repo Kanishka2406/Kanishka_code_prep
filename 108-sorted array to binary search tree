@@ -1,0 +1,35 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        int n = nums.length;
+        return trees(nums,0,n-1);
+        
+    }
+    private TreeNode trees(int nums[],int start , int end)
+    {
+        int mid= (start+end)/2;
+        if(start>end)
+        {
+            return null;
+        }
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left =trees(nums,start,mid-1);
+       node.right= trees(nums,mid+1,end);
+        return node;
+    }
+}
